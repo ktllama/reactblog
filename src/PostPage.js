@@ -20,6 +20,13 @@ const PostPage = ({ posts, handleDelete }) => {
                         </button>
                     </>
                 }
+                {!post && //if post does not exist (is false) this will display
+                    <>
+                        <h2>Post Not Found</h2>
+                        <p>SORRY :/</p>
+                        <p><Link to="/">Visit Our Homepage</Link></p>
+                    </>
+                }
             </article>
         </main>
     )
