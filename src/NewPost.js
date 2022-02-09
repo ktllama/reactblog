@@ -11,14 +11,14 @@ const NewPost = ({
                     type="text"
                     required
                     value={postTitle}
-                    onChane={(e) =>  setPostTitle=(e.target.value)}
+                    onChane={(e) =>  setPostTitle(e.target.value)}
                 />
                 <label htmlFor="postBody">Post:</label>
                 <textarea
                     id="postBody"
                     required
                     value={postBody}
-                    onChange={(e) => setPostBody=(e.target.value)}
+                    onChange={(e) => setPostBody(e.target.value)}
                 />
                 <button type="submit">Submit</button>
             </form>

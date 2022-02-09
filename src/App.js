@@ -9,6 +9,7 @@ import About from './About';
 import Missing from './Missing';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 
 function App() {
 
@@ -45,8 +46,21 @@ function App() {
 
   const history = useHistory();
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //define id for new post- need to find id of last post ( posts[posts.length-1] ) then reference id prop of that last post and add 1
+    const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+    //define date/time value with date-fns dependency
+    const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+    //create new post (this object below)
+    const newPost = {id, title: postTitle, datetime, body: postBody};
+    //create a new array with all of the posts with spread operator and adding newPost 
+    const allPosts = [ ...posts, newPost ];
+    setPosts(allPosts) //adding new post to state
+    setPostTitle('');  //resetting post title and body for next post add
+    setPostBody('');
+    //after submitting new post route user back to home page
+    history.push('/');
   }
 
   const handleDelete = (id) => {
