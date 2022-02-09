@@ -40,9 +40,14 @@ function App() {
   ])
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const history = useHistory();
 
   const handleDelete = (id) => {
-    console.log('yo mama');
+    const postsList = posts.filter(post => post.id !== id);
+    //returning a list of all posts except the one wil the id passed here as an argument- bc that would have been the id associated with the delete click that calls this function
+    setPosts(postsList);
+    history.push('/');
+    //now as a part of this function when you click the delete button it will serve the home component and route you there
   }
 
   return (
