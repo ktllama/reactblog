@@ -43,8 +43,18 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
-
   const history = useHistory();
+
+  useEffect(() => {
+    const filteredResults = posts.filter(post =>
+      ((post.body).toLowerCase()).includes(search.toLowerCase())
+      || ((post.title).toLowerCase()).includes(search.toLowerCase()));
+    //set both to lowercase so case doesnt matter
+    //filter the bodys that match the char in the search state
+    //use || or to look either through the body or title
+    setSearchResults(filteredResults.reverse());
+  },[posts, search])
+  //will filter the POSTS we have to match our SEARCH- thats why both dependencies
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +87,7 @@ function App() {
       <Nav search={search} setSearch={setSearch} />
         <Switch>
           <Route exact path="/">
-            <Home posts={posts} />
+            <Home posts={searchResults} />
           </Route>
           <Route exact path="/post">
             <NewPost 
