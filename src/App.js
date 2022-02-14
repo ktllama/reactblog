@@ -10,6 +10,7 @@ import Missing from './Missing';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import api from './api/posts';
 
 function App() {
 
@@ -19,6 +20,30 @@ function App() {
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
   const history = useHistory();
+  
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try{
+        const response = await api.get('/posts'); //posts is endpoint
+        setPosts(response.data); //json data is in .data - if unsure of what data wil return you can add if(response && response.data) and then set the posts
+      } catch (err) {
+        if (err.response) { //if the error response is defined
+          //not in 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else { //if response is not defined (possible no response or 404) just log the error message
+          console.log(`Error: ${err.message}`);
+
+        }
+      }
+    }
+
+    fetchPosts();
+  },[]) //loadtime data fetching axios function
+  //axios is easy to understand bc we use the verbs from CRUD- Get, Post, Put, Delete, Patch
+  //axios takes care of converting data to json
+  //it will also catch the errors for you when theyre not in the range of 200 http responses
 
   useEffect(() => {
     const filteredResults = posts.filter(post =>
