@@ -33,4 +33,4 @@ const PostPage = ({ posts, handleDelete }) => {
     )
 };
 
-export default PostPage;
+export default PostPage;  
