@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { useParams, Link } from 'react-router-dom';
 
 const PostPage = ({ posts, handleDelete }) => {

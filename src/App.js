@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import * as React from 'react';
 import Header from './Header';
 import Nav from './Nav';
 import Footer from './Footer';

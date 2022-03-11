@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Feed from "./Feed";
 
 const Home = ({ posts }) => {

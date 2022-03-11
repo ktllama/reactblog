@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 const NewPost = ({
     handleSubmit, postTitle, setPostTitle, postBody, setPostBody
 }) => {
